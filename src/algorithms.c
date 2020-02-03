@@ -1,13 +1,14 @@
 #include "algorithms.h"
 
-void 
-retry (bool (*function)(), uint8_t attempts)
+uint8_t 
+retry (bool (*function)(), uint8_t max_attempts)
 {
-	for(uint8_t attempt = 0; attempt < attempts; attempts++)
+	for(uint8_t attempt = 0; attempt < max_attempts; attempt++)
 	{
 		if(function())
 		{
-			break;
+			return attempt;
 		}
 	}
+	return max_attempts;
 }

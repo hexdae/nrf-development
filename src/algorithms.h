@@ -6,8 +6,9 @@
 
 /// Retry a function until it returns true.
 /// @param[in] fn The function. 
-/// @param[in] attempts Max number of attempts. 
-void retry (bool (*function)(), uint8_t attempts); 
+/// @param[in] attempts Max number of attempts.
+/// @returns Number of attempts needed.
+uint8_t retry (bool (*function)(), uint8_t attempts); 
  
  
 #endif // ALGORITHMS_H
