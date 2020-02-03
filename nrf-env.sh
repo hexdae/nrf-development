@@ -18,5 +18,4 @@ if ! docker image ls | grep "\b$container_name\b" > /dev/null ; then
 fi
 
 # Run the command with the Docker image.
-eval "$(docker-machine env default)"
 docker run --mount type=bind,source="$(pwd)",target=/app ${container_name} "$@"
