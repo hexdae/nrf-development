@@ -13,6 +13,7 @@ An embedded development environment for [Nordic Semiconductors](https://www.nord
 
 - [Install Docker](https://docs.docker.com/get-started/#install-docker-desktop)
 - Clone the repository: `git clone https://www.github.com/d-asnaghi/nrf-development`
+- Move into its directory: `cd nrf-development`
 - Enable execution of the environment script: `chmod 755 nrf-env.sh` 
 - Run compilation command: `./nrf-env.sh make` 
 
@@ -22,7 +23,7 @@ Any command appended after the environment script will run inside the developmen
 
 Some common commands are:
 
-- Compile: `nrf-env.sh make`
-- Test `module.c`: `nrf-env.sh ceedling test:module`
-- Test all modules: `nrf-env.sh ceedling test:all`
+- Compile: `./nrf-env.sh make`
+- Test `module.c`: `./nrf-env.sh ceedling test:module`
+- Test all modules: `./nrf-env.sh ceedling test:all`
 
