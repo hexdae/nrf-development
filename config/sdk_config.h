@@ -79,6 +79,44 @@
 
 // <h> nRF_Drivers 
 
+
+// <e> NRFX_SPI_ENABLED - nrfx_spi - SPI peripheral driver
+//==========================================================
+#ifndef NRFX_SPI_ENABLED
+#define NRFX_SPI_ENABLED 1
+#endif
+// <q> NRFX_SPI0_ENABLED  - Enable SPI0 instance
+ 
+
+#ifndef NRFX_SPI0_ENABLED
+#define NRFX_SPI0_ENABLED 1
+#endif
+
+// <o> NRFX_SPI_DEFAULT_CONFIG_IRQ_PRIORITY  - Interrupt priority
+ 
+// <0=> 0 (highest) 
+// <1=> 1 
+// <2=> 2 
+// <3=> 3 
+// <4=> 4 
+// <5=> 5 
+// <6=> 6 
+// <7=> 7 
+
+#ifndef NRFX_SPI_DEFAULT_CONFIG_IRQ_PRIORITY
+#define NRFX_SPI_DEFAULT_CONFIG_IRQ_PRIORITY 6
+#endif
+
+// <o> NRFX_SPI_MISO_PULL_CFG  - MISO pin pull configuration.
+ 
+// <0=> NRF_GPIO_PIN_NOPULL 
+// <1=> NRF_GPIO_PIN_PULLDOWN 
+// <3=> NRF_GPIO_PIN_PULLUP 
+
+#ifndef NRFX_SPI_MISO_PULL_CFG
+#define NRFX_SPI_MISO_PULL_CFG 1
+#endif
+
 //==========================================================
 // <e> NRFX_CLOCK_ENABLED - nrfx_clock - CLOCK peripheral driver
 //==========================================================

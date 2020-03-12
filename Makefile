@@ -1,9 +1,10 @@
-PROJECT_NAME     := nfc_uart_tag_pca10040
+PROJECT_NAME     := nrf_project
 TARGETS          := nrf52832_xxaa
 OUTPUT_DIRECTORY := build
 
 SDK_ROOT := /sdk
 SRC_DIR := ./src
+HAL_DIR := ./hal
 CONFIG_DIR := ./config
 
 $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
@@ -11,6 +12,8 @@ $(OUTPUT_DIRECTORY)/nrf52832_xxaa.out: \
 
 # Source files common to all targets
 SRC_FILES += \
+  $(wildcard $(HAL_DIR)/*.c) \
+  $(wildcard $(SRC_DIR)/*.c) \
   $(SDK_ROOT)/modules/nrfx/mdk/gcc_startup_nrf52.S \
   $(SDK_ROOT)/components/libraries/log/src/nrf_log_backend_rtt.c \
   $(SDK_ROOT)/components/libraries/log/src/nrf_log_backend_serial.c \
@@ -45,16 +48,19 @@ SRC_FILES += \
   $(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_timer.c \
   $(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_uart.c \
   $(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_uarte.c \
+  $(SDK_ROOT)/modules/nrfx/drivers/src/nrfx_spi.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_Syscalls_GCC.c \
   $(SDK_ROOT)/external/segger_rtt/SEGGER_RTT_printf.c \
   $(SDK_ROOT)/modules/nrfx/mdk/system_nrf52.c \
   $(SDK_ROOT)/components/nfc/platform/nfc_platform.c \
-  $(wildcard $(SRC_DIR)/*.c)
 
 
 # Include folders common to all targets
 INC_FOLDERS += \
+  $(CONFIG_DIR) \
+  $(HAL_DIR) \
+  $(SRC_DIR) \
   $(SDK_ROOT)/external/fprintf \
   $(SDK_ROOT)/components/libraries/experimental_section_vars \
   $(SDK_ROOT)/components/libraries/hardfault/nrf52 \
@@ -84,8 +90,6 @@ INC_FOLDERS += \
   $(SDK_ROOT)/components/boards \
   $(SDK_ROOT)/integration/nrfx/legacy \
   $(SDK_ROOT)/components/libraries/util \
-  $(CONFIG_DIR) \
-  $(SRC_DIR) \
 
 # Libraries common to all targets
 LIB_FILES += \
