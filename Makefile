@@ -1,4 +1,5 @@
 include hal/hal.mk
+include drivers/waveshare.mk
 
 PROJECT_NAME     := nrf_project
 TARGETS          := nrf52832_xxaa
