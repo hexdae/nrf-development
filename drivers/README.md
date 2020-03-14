@@ -10,7 +10,7 @@ Create a folder for a `driver` that contains its source code
 drivers
 ├── README.md
 └── my_driver
-    ├── int
+    ├── inc
     └── src
 ```
 
@@ -21,7 +21,7 @@ drivers
 ├── README.md
 ├── my_driver.mk
 └── my_driver
-    ├── int
+    ├── inc
     └── src
 ```
 
