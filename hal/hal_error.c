@@ -1,6 +1,6 @@
 #include "hal_error.h"
 
-hal_error_t convert_sdk_error(ret_code_t err)
+hal_error_t hal_convert_sdk_error(ret_code_t err)
 {
 	switch(err)
 	{

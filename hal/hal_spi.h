@@ -1,8 +1,11 @@
 #ifndef HAL_SPI_H
 #define HAL_SPI_H
 
-#include <stdint.h>
+#include <stdbool.h>
 #include <stddef.h>
+#include <stdint.h>
+
+#include "hal_error.h"
 
 typedef enum {
 	HAL_SPI_FREQ_125K,   ///< 125 kbps.
@@ -22,8 +25,8 @@ typedef struct config {
     hal_spi_frequency_t frequency;
 } hal_spi_config_t;
 
-void hal_spi_initialize(hal_spi_config_t* config);
-void hal_spi_write(uint8_t* data, size_t size);
-void hal_spi_read(uint8_t* data, size_t size);
+hal_error_t hal_spi_initialize(hal_spi_config_t* config);
+hal_error_t hal_spi_write(uint8_t* data, size_t size);
+hal_error_t hal_spi_read(uint8_t* data, size_t size);
 
 #endif //HAL_SPI_H

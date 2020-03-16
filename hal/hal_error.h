@@ -11,6 +11,6 @@ typedef enum {
 } hal_error_t;
 
 
-hal_error_t convert_sdk_error(ret_code_t err);
+hal_error_t hal_convert_sdk_error(ret_code_t err);
 
 #endif // HAL_ERROR_H

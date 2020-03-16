@@ -24,36 +24,31 @@ static inline int nrf_spi_frequency(hal_spi_frequency_t frequency)
 }
 
 
-nrfx_spi_evt_handler_t spi_event_handler(nrfx_spi_evt_t const * p_event, void * p_context)
-{
-    spi_xfer_done = true;
-    return NULL;
-}
-
-
-void hal_spi_initialize(hal_spi_config_t* config)
+hal_error_t hal_spi_initialize(hal_spi_config_t* config)
 {
 	nrfx_spi_config_t spi_config = NRFX_SPI_DEFAULT_CONFIG;
+    
     spi_config.ss_pin   = config->ss_pin;
     spi_config.miso_pin = config->miso_pin;
     spi_config.mosi_pin = config->mosi_pin;
     spi_config.sck_pin  = config->sck_pin;
-    spi_config.frequency = nrf_spi_frequency(config->frequency); 
-    nrfx_spi_init(&spi, &spi_config, NULL, NULL);
+    spi_config.frequency = nrf_spi_frequency(config->frequency);
+
+    return hal_convert_sdk_error(nrfx_spi_init(&spi, &spi_config, NULL, NULL));
 }
 
 
-void hal_spi_write(uint8_t* data, size_t size)
+hal_error_t hal_spi_write(uint8_t* data, size_t size)
 {
     static const int TX_FLAGS = 0x0;
     nrfx_spi_xfer_desc_t tx = NRFX_SPI_XFER_TX(data, size); 
-	nrfx_spi_xfer(&spi, &tx, TX_FLAGS);
+	return hal_convert_sdk_error(nrfx_spi_xfer(&spi, &tx, TX_FLAGS));
 }
 
 
-void hal_spi_read(uint8_t* data, size_t size)
+hal_error_t hal_spi_read(uint8_t* data, size_t size)
 {
     static const int RX_FLAGS = 0x0;
     nrfx_spi_xfer_desc_t rx = NRFX_SPI_XFER_RX(data, size);
-	nrfx_spi_xfer(&spi, &rx, RX_FLAGS);
+	return hal_convert_sdk_error(nrfx_spi_xfer(&spi, &rx, RX_FLAGS));
 }
