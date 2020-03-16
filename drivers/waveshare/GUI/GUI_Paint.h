@@ -200,9 +200,6 @@ void Paint_DrawTime(UWORD Xstart, UWORD Ystart, PAINT_TIME *pTime, sFONT* Font, 
 
 //pic
 void Paint_DrawBitMap(const unsigned char* image_buffer);
-//void Paint_DrawBitMap_Half(const unsigned char* image_buffer, UBYTE Region);
-//void Paint_DrawBitMap_OneQuarter(const unsigned char* image_buffer, UBYTE Region);
-//void Paint_DrawBitMap_OneEighth(const unsigned char* image_buffer, UBYTE Region);
 void Paint_DrawBitMap_Block(const unsigned char* image_buffer, UBYTE Region);
 #endif
 

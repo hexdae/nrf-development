@@ -750,8 +750,15 @@ void Paint_DrawBitMap(const unsigned char* image_buffer)
     }
 }
 
-
-
+/******************************************************************************
+function:   Display monochrome bitmap
+parameter:
+    image_buffer ：A picture data converted to a bitmap
+    Region : the section of the bitmap you want to display
+info:
+    Use a computer to convert the image into a corresponding array,
+    and then embed the array directly into Imagedata.cpp as a .c file.
+******************************************************************************/
 void Paint_DrawBitMap_Block(const unsigned char* image_buffer, UBYTE Region)
 {
     UWORD x, y;

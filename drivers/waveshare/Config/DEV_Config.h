@@ -62,15 +62,15 @@
 /**
  * e-Paper GPIO
 **/
-#define EPD_RST_PIN     30
-#define EPD_DC_PIN      29
-#define EPD_CS_PIN      28
-#define EPD_BUSY_PIN    31
+#define EPD_BUSY_PIN    22
+#define EPD_RST_PIN     23
+#define EPD_DC_PIN      24
+#define EPD_CS_PIN      25
 
 /**
  * GPIO read and write
 **/
-#define DEV_Digital_Write(_pin, _value) hal_gpio_write(_pin, _value == 0? 0:1)
+#define DEV_Digital_Write(_pin, _value) hal_gpio_write(_pin, _value == 0 ? 0 : 1)
 #define DEV_Digital_Read(_pin) hal_gpio_read(_pin)
 
 /**
