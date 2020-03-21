@@ -8,6 +8,7 @@
 #include "hal_gpio.h"
 #include "hal_spi.h"
 #include "hal_time.h"
+#include "hal_power.h"
 
 /* Waveshare e-Paper header */
 #include "EPD_2in9.h"
@@ -16,17 +17,16 @@
 /* Source headers */
 #include "qrcodegen.h"
 
-
 #define IMAGE_SIZE ((EPD_2IN9_WIDTH / 8) * EPD_2IN9_HEIGHT)
 #define SSID       "SSID"
 #define PASSWORD   "PASSWORD"
-
 
 uint8_t image[IMAGE_SIZE];
 char wifi_string[50];
 const uint32_t LED = 17;
 
-hal_spi_config_t spi_config = {
+hal_spi_config_t spi_config = 
+{
     .miso_pin = 0xFF,
     .mosi_pin = 27,
     .sck_pin = 26,
@@ -34,12 +34,10 @@ hal_spi_config_t spi_config = {
     .frequency = HAL_SPI_FREQ_4M,
 };
 
-
 void set_wifi_credentials(char* wifi_string, char* ssid, char* password)
 {
     sprintf(wifi_string, "WIFI:S:%s;T:WPA;P:%s;;", ssid, password);
 }   
-
 
 void Paint_QR(const char *text, uint8_t scale, uint16_t cx, uint16_t cy) {
 
@@ -68,9 +66,11 @@ void Paint_QR(const char *text, uint8_t scale, uint16_t cx, uint16_t cy) {
     }
 }
 
-
 int main(void)
 {
+    /* Set the Wi-Fi configuration */
+    set_wifi_credentials(wifi_string, SSID, PASSWORD);
+
     /* Configure GPIOs */
     hal_gpio_config_input(EPD_BUSY_PIN);
     hal_gpio_config_output(EPD_RST_PIN);
@@ -82,9 +82,6 @@ int main(void)
 
     /* Initialize e-Paper display */
     EPD_2IN9_Init(EPD_2IN9_FULL);
-
-    /* Set the Wi-Fi configuration &*/
-    set_wifi_credentials(wifi_string, SSID, PASSWORD);
 
     /* Display Wi-Fi QR Code */
     Paint_NewImage(image, EPD_2IN9_WIDTH, EPD_2IN9_HEIGHT, 270, WHITE);
@@ -98,5 +95,6 @@ int main(void)
     {
         hal_gpio_toggle(LED);
         hal_delay_ms(100);
+        hal_power_set_mode(HAL_LOW_POWER);
     }
 }
