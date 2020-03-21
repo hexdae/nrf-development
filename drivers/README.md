@@ -28,10 +28,11 @@ drivers
 Use `my_driver.mk` to add to the `SRC_FILES` and `INC_FOLDERS` make variables
 
 ```Make
-SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+ROOT_DIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DRIVER_DIR = ROOT_DIR/drivers/my_driver
 
-SRC := $(SELF_DIR)/my_driver/src
-INC := $(SELF_DIR)/my_driver/inc
+SRC := $(DRIVER_DIR)/src
+INC := $(DRIVER_DIR)/inc
 
 SRC_FILES += \
   $(wildcard $(SRC)/*.c) \
