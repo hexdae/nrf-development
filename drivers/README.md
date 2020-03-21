@@ -48,3 +48,21 @@ Now just include `my_driver.mk` in the general `Makefile`:
 include drivers/my_driver.mk
 ...
 ```
+
+### Configuration files
+Most drivers will include some files that might be needed for configuring the driver interface on a specific platform.
+
+In order to avoid modifying the source files of th driver, it is usually good practice to create an external folder with a copy of the configuration files and point the driver's makefile to it instead. This is the purpose of the `user` folder.  
+
+```bash
+drivers
+├── README.md
+├── my_driver.mk
+├── my_driver
+│   ├── inc
+│   └── src
+└── user
+    └── my_driver_config
+    	└── ...
+```
+
