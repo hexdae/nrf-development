@@ -1,23 +1,21 @@
-SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
+ROOT_DIR := $(dir $(firstword $(MAKEFILE_LIST)))
+DRIVER_DIR := $(ROOT_DIR)/drivers
 
-CONFIG := $(SELF_DIR)/waveshare/Config
-EPAPER := $(SELF_DIR)/waveshare/e-Paper
-FONTS := $(SELF_DIR)/waveshare/Fonts
-GUI := $(SELF_DIR)/waveshare/GUI
-EXAMPLES := $(SELF_DIR)/waveshare/Examples
+CONFIG := $(DRIVER_DIR)/user/waveshare_config
+EPAPER := $(DRIVER_DIR)/waveshare/e-Paper
+FONTS := $(DRIVER_DIR)/waveshare/Fonts
+GUI := $(DRIVER_DIR)/waveshare/GUI
 
 SRC_FILES += \
   $(wildcard $(CONFIG)/*.c) \
   $(wildcard $(EPAPER)/*.c) \
   $(wildcard $(FONTS)/*.c) \
   $(wildcard $(GUI)/*.c) \
-  $(wildcard $(EXAMPLES)/*.c) \
 
 INC_FOLDERS += \
   $(EPAPER) \
   $(CONFIG) \
   $(FONTS) \
   $(GUI) \
-  $(EXAMPLES) \
 
   
